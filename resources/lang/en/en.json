@@ -1,0 +1,43 @@
+{
+  "label": {
+    "common": {
+      "confirmation": "Confirmation",
+      "please_select": "Please select ",
+      "empty_list": "There’s nothing here",
+      "empty_list_message": "Try changing your filters to see appointments or add new",
+      "search_filter": "Search Filter",
+      "search": "Search",
+      "clear": "Clear",
+      "keyword": "Keyword"
+    },
+    "dashboard": "Rentalhouse Dashboard",
+    "house": {
+      "owned": "House owned",
+      "name": "Name",
+      "price": "Price",
+      "add": "Add new house",
+      "information": "House information",
+      "add_room": "Create room(department)",
+      "phone_number": "Phone number",
+      "address_info": "Address information",
+      "province": "Province",
+      "district": "District",
+      "ward": "Ward",
+      "address_detail": "Address detail",
+      "detail": "House detail"
+    }
+  },
+  "menu": {
+    "profile": "Profile",
+    "house": "House",
+    "category": "Category",
+    "security": "Security",
+    "integrations": "Integrations",
+    "automations": "Automations"
+  },
+  "action": {
+    "create": "New",
+    "cancel": "Cancel",
+    "next_step": "Next step"
+  }
+}

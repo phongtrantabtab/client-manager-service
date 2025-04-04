@@ -1,0 +1,43 @@
+{
+  "label": {
+    "common": {
+      "confirmation": "Xác nhận",
+      "please_select": "Vui lòng chọn ",
+      "empty_list": "Danh sách trống",
+      "empty_list_message": "Hãy thử thay đổi điều kiện tìm kiếm hoặc thêm mới",
+      "search_filter": "Tìm kiếm",
+      "search": "Tìm kiếm",
+      "clear": "Xóa",
+      "keyword": "Từ khóa"
+    },
+    "dashboard": "Rentalhouse Dashboard",
+    "house": {
+      "owned": "Nhà hiện sở hữu",
+      "name": "Tên",
+      "price": "Giá",
+      "add": "Thêm nhà mới",
+      "information": "Thông tin nhà",
+      "add_room": "Thêm phòng(căn hộ)",
+      "phone_number": "Số điện thoại",
+      "address_info": "Thông tin địa chỉ",
+      "province": "Tỉnh(Thành phố)",
+      "district": "Quận(Huyện)",
+      "ward": "Xã(Thị trấn)",
+      "address_detail": "Chi tiết địa chỉ",
+      "detail": "Thông tin chi tiết"
+    }
+  },
+  "menu": {
+    "profile": "Trang cá nhân",
+    "house": "Nhà",
+    "category": "Danh mục",
+    "security": "Bảo mật",
+    "integrations": "Integrations",
+    "automations": "Tự động"
+  },
+  "action": {
+    "create": "Thêm mới",
+    "cancel": "Hủy",
+    "next_step": "Bước tiếp"
+  }
+}
