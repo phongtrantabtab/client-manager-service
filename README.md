@@ -1,66 +1,142 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Client Manager Service
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Introduction
+Client Manager Service is a Laravel + Inertia.js + Vue.js-based CMS designed for internal admin use. This service allows administrators to efficiently manage client data, stock-related blog posts, and other content-driven assets within the Tabtab ecosystem.
 
-## About Laravel
+## ⚙️ Tech Stack
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Laravel 11
+- Inertia.js
+- Vue 3
+- Laravel Breeze
+- Docker
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🐳 Getting Started (with Docker)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. Clone the repository:
+    ```bash
+   git clone https://github.com/phongtrantabtab/client-manager-service.git
+   cd client-manager-service
+   ```
+2. Build project:
+   - Copy env file:
+       ```bash
+       cp .env.example .env
+       ```
+   - Build docker:
+       ```bash
+       docker compose up --build
+       ```
+3. Build Laravel:
+    ```bash
+   docker exec -it cms_worker bash
+    ```
+    ```bash
+   composer install
+    ```
+4. Migrate database:
+    ```bash
+   php artisan migrate
+    ```
+5. Rewrite domain (optional):
+- 🛠️ Host Rewrite Setup Guide:
+     This guide explains how to set up a custom host (e.g., `cms.tabtab.docker`) to point to your local development environment.
 
-## Learning Laravel
+  - 🧩 Step 1: Add Host Entry
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+      To access the project via a custom domain (like `cms.tabtab.docker`), add an entry to your system's hosts file:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    - For macOS / Linux
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+        ```bash
+        sudo nano /etc/hosts
+        ```
+      Add the following line at the bottom:
+        ```bash
+        127.0.0.1 cms.tabtab.docker
+        ```
+    - For Window
+        1. Open Notepad as Administrator
+        2. Open the file: C:\Windows\System32\drivers\etc\hosts
+        3. Add:
+            ```bash
+           127.0.0.1 cms.tabtab.docker
+            ```
+         
+  - 🌐 Step 2: Access the App
 
-## Laravel Sponsors
+      After the setup, you can visit:
+      ```bash
+      http://cms.tabtab.docker:8080
+      ```
+- ✅ Notes
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+  Make sure the container or dev server is running and listening on 127.0.0.1:80
 
-### Premium Partners
+    You may need to clear DNS cache:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    - macOS: ```sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder```
 
-## Contributing
+    - Windows: ```ipconfig /flushdns```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 📚 Database Connection Guide
 
-## Code of Conduct
+This service is configured to work with **multiple database connections**. This guide outlines how to define and use custom database connections in your codebase.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. 🔧 Configuration
 
-## Security Vulnerabilities
+    All database connections are defined in .env:
+    
+    ```env
+    DB_CONNECTION=mysql
+    DB_HOST=cms_mysql
+    DB_PORT=3306
+    DB_DATABASE=
+    DB_USERNAME=
+    DB_PASSWORD=
+    
+    DB_AUTH_CONNECTION=mysql
+    DB_AUTH_HOST=authuserservice-mysql-1
+    DB_AUTH_PORT=3306
+    DB_AUTH_DATABASE=
+    DB_AUTH_USERNAME=
+    DB_AUTH_PASSWORD=
+    
+    DB_POST_CONNECTION=mysql
+    DB_POST_HOST=postuserservice-mysql-1
+    DB_POST_PORT=3306
+    DB_POST_DATABASE=
+    DB_POST_USERNAME=
+    DB_POST_PASSWORD=
+    
+    DB_PAYMENT_CONNECTION=mysql
+    DB_PAYMENT_HOST=paymentuserservice-mysql-1
+    DB_PAYMENT_PORT=3306
+    DB_PAYMENT_DATABASE=
+    DB_PAYMENT_USERNAME=
+    DB_PAYMENT_PASSWORD=
+    
+    ```
+    ``authuserservice-mysql-1``, ``postuserservice-mysql-1``, ``paymentuserservice-mysql-1`` is container name of docker images
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2. 🔧 Create network:
+   
+    CMS worker needs to be connected to MySQL services from other Docker containers to be able to connect to the database.
 
-## License
+   - Check your network list:
+   ```bash
+   docker network ls
+   ```
+   - Connect network:
+   ```bash
+   docker network connect auth_network cms_worker
+   ```
+   ``auth_network``: network of the service you want to connect.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   ``cms_worker``: container process source laravel of the cms.
+
+## Author
+#### Phong Tran
+Email: [phong.tran@tabtab.me](https://github.com/phongtrantabtab)
+
+GitHub: [github/phongtrantabtab](https://github.com/phongtrantabtab)
